@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::API
+  include Knock::Authenticable
   before_action :cors_preflight_check
   after_action :cors_set_access_control_headers
 
@@ -28,4 +29,8 @@ class ApplicationController < ActionController::API
     headers['Access-Control-Max-Age'] = '1728000'
     render text: '', content_type: 'text/plain'
   end
+
+  # def authenticate_v1_user
+  #   authenticate_for Api::V1::User
+  # end
 end
