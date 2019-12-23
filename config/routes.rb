@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     namespace 'v1' do
       resources :courses, only: %i[index]
       resources :users, only: %i[create show]
-      resources :favourites, only: %i[create index]
+      resources :favourites, only: %i[create index destroy]
       post 'user_token' => 'user_token#create'
       post 'find_user' => 'users#find'
     end

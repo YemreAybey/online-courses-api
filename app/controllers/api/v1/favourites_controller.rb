@@ -20,6 +20,14 @@ class Api::V1::FavouritesController < ApplicationController
     else
       render json: { error: 'It is already favourited' }
     end
+
+    def destroy
+      @fav = current_user.favourites.find_by(course_id: params[:course_id])
+      if @fav
+        @fav.destroy
+        render json: {message: 'The course is removed from favs'}
+      end
+    end
   end
 
   private
